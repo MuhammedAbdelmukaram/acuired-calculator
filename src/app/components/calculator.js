@@ -142,7 +142,7 @@ const Calculator = ({ setResults }) => {
                         onChange={handleChange}
                         className={styles.inputCloseRate}
                     />
-                    <span className={styles.inputCloseRateSuffix}>%</span>
+
                 </div>
             </div>
 

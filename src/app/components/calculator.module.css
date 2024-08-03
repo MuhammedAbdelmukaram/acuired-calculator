@@ -209,12 +209,18 @@
     .inputCloseRate {
         width: 60px;
     }
+
+    .resetButton {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 1rem;
+        padding: 2rem;
         width: 100%;
+        margin-top: 10px;
     }
 
     .header {
@@ -232,5 +238,10 @@
 
     .inputCloseRateSuffix {
         font-size: 0.875rem;
+    }
+
+    .resetButton {
+        width: 20px;
+        height: 20px;
     }
 }
