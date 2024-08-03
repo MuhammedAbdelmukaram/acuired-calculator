@@ -1,0 +1,15 @@
+.results{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result{
+    font-size: 96px;
+    color: #5120DD;
+}
+
+.label{
+    color: black;
+    font-size: 18px;
+}
