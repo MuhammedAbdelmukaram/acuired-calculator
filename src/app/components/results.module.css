@@ -1,15 +1,61 @@
-.results{
+/* Updated styles for responsiveness */
+
+.resultWrapper{
+    border-top:3px solid #000;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    padding-top: 50px;
+}
+.results {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px;
 }
 
-.result{
-    font-size: 96px;
+.result {
+    font-size: 3rem;
     color: #5120DD;
 }
 
-.label{
+.label {
     color: black;
-    font-size: 18px;
+    font-size: 1rem;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1024px) {
+    .result {
+        font-size: 2.5rem;
+    }
+
+    .label {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .resultWrapper{
+        border: none;
+    }
+    .result {
+        font-size: 2rem;
+    }
+
+    .label {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .result {
+        font-size: 1.5rem;
+    }
+
+    .label {
+        font-size: 0.625rem;
+    }
 }
