@@ -72,7 +72,7 @@ const Calculator = ({ setResults }) => {
                 className={styles.resetButton}
             />
             <div>
-                <p className={styles.header}>Salesman's Calculator</p>
+                <p className={styles.header}>Salesman&apos;s Calculator</p>
             </div>
 
             <div className={styles.twoInputs}>
