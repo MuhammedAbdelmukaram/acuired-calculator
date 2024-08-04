@@ -3,10 +3,12 @@ import styles from './calculator.module.css';
 
 const Calculator = ({ setResults }) => {
     const [formData, setFormData] = useState({
-        calls: '',
-        closeRate: '0',
-        aov: '',
-        ltv: ''
+        leads: '',
+        callsTaken: '',
+        callsClosed: '',
+        apv: '',
+        ltv: '',
+        closeRate: '0'
     });
 
     useEffect(() => {
@@ -21,40 +23,32 @@ const Calculator = ({ setResults }) => {
         });
     };
 
-    const handleSliderChange = (e) => {
-        setFormData({
-            ...formData,
-            closeRate: e.target.value
-        });
-    };
-
     const handleCalculate = () => {
-        const { calls, closeRate, aov, ltv } = formData;
+        const { callsClosed, apv, ltv, closeRate } = formData;
 
-        const parsedCalls = parseInt(calls);
+        const parsedCallsClosed = parseInt(callsClosed);
         const parsedCloseRate = parseFloat(closeRate) / 100; // Convert percentage to decimal
-        const parsedAov = parseFloat(aov);
+        const parsedapv = parseFloat(apv);
         const parsedLtv = parseFloat(ltv);
 
-        // Calculate number of closed deals
-        const closedDeals = parsedCalls * parsedCloseRate;
-
         // Calculate Total Revenue
-        const totalRevenue = closedDeals * parsedAov * parsedLtv;
+        const totalRevenue = parsedCallsClosed * parsedapv * parsedLtv;
 
         setResults({
             totalRevenue: totalRevenue.toFixed(2),
-            closedDeals: closedDeals.toFixed(2),
-            revenuePerCall: (totalRevenue / parsedCalls).toFixed(2)
+            closedDeals: parsedCallsClosed.toFixed(2),
+            revenuePerCall: (totalRevenue / parsedCallsClosed).toFixed(2)
         });
     };
 
     const handleReset = () => {
         setFormData({
-            calls: '',
-            closeRate: '0',
-            aov: '',
-            ltv: ''
+            leads: '',
+            callsTaken: '',
+            callsClosed: '',
+            apv: '',
+            ltv: '',
+            closeRate: '0'
         });
         setResults({
             totalRevenue: '',
@@ -72,17 +66,17 @@ const Calculator = ({ setResults }) => {
                 className={styles.resetButton}
             />
             <div>
-                <p className={styles.header}>Salesman&apos;s Calculator</p>
+                <p className={styles.header}>Estimated Revenue Calculator</p>
             </div>
 
             <div className={styles.twoInputs}>
                 <div>
-                    <label htmlFor="calls" className={styles.label}>Calls</label>
+                    <label htmlFor="leads" className={styles.label}>Leads</label>
                     <input
                         type="number"
-                        id="calls"
-                        name="calls"
-                        value={formData.calls}
+                        id="leads"
+                        name="leads"
+                        value={formData.leads}
                         onChange={handleChange}
                         placeholder="0"
                         className={styles.input}
@@ -90,17 +84,48 @@ const Calculator = ({ setResults }) => {
                 </div>
 
                 <div>
-                    <label htmlFor="aov" className={styles.label}>AOV (Average Order Value)</label>
+                    <label htmlFor="callsTaken" className={styles.label}>Calls Taken</label>
                     <input
                         type="number"
-                        id="aov"
-                        name="aov"
-                        value={formData.aov}
+                        id="callsTaken"
+                        name="callsTaken"
+                        value={formData.callsTaken}
+                        onChange={handleChange}
+                        placeholder="0"
+                        className={styles.input}
+                    />
+                </div>
+            </div>
+
+            <div className={styles.twoInputs}>
+                <div>
+                    <label htmlFor="callsClosed" className={styles.label}>Calls Closed</label>
+                    <input
+                        type="number"
+                        id="callsClosed"
+                        name="callsClosed"
+                        value={formData.callsClosed}
+                        onChange={handleChange}
+                        placeholder="0"
+                        className={styles.input}
+                    />
+                </div>
+
+                <div>
+                    <label htmlFor="apv" className={styles.label}>APV (Average Placement Value)</label>
+                    <input
+                        type="number"
+                        id="apv"
+                        name="apv"
+                        value={formData.apv}
                         onChange={handleChange}
                         placeholder="$ 0.00"
                         className={styles.input}
                     />
                 </div>
+            </div>
+
+            <div className={styles.twoInputs}>
                 <div>
                     <label htmlFor="ltv" className={styles.label}>LTV (Lifetime Value)</label>
                     <input
@@ -113,26 +138,9 @@ const Calculator = ({ setResults }) => {
                         className={styles.input}
                     />
                 </div>
-            </div>
 
-            <div className={styles.twoInputs}>
-
-            </div>
-
-            <div className={styles.closeRateWrapper}>
-                <label htmlFor="closeRate" className={styles.label}>Close Rate (%)</label>
-                <input
-                    type="range"
-                    id="closeRateSlider"
-                    name="closeRate"
-                    min="0"
-                    max="100"
-                    step="0.01"
-                    value={formData.closeRate}
-                    onChange={handleSliderChange}
-                    className={styles.slider}
-                />
-                <div className={styles.inputCloseRateWrapper}>
+                <div>
+                    <label htmlFor="closeRate" className={styles.label}>Close Rate (%)</label>
                     <input
                         type="number"
                         step="0.01"
@@ -140,9 +148,9 @@ const Calculator = ({ setResults }) => {
                         name="closeRate"
                         value={formData.closeRate}
                         onChange={handleChange}
-                        className={styles.inputCloseRate}
+                        placeholder="0.00"
+                        className={styles.input}
                     />
-
                 </div>
             </div>
 

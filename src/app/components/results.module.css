@@ -7,7 +7,8 @@
     justify-content: space-around;
     align-items: center;
     height: 100%;
-    padding-top: 50px;
+    padding-top: 65px;
+    padding-bottom: 50px;
 }
 .results {
     display: flex;
