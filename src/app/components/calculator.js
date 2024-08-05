@@ -98,46 +98,8 @@ const Calculator = ({ setResults }) => {
             </div>
 
             <div className={styles.twoInputs}>
-                <div>
-                    <label htmlFor="callsClosed" className={styles.label}>Calls Closed</label>
-                    <input
-                        type="number"
-                        id="callsClosed"
-                        name="callsClosed"
-                        value={formData.callsClosed}
-                        onChange={handleChange}
-                        placeholder="0"
-                        className={styles.input}
-                    />
-                </div>
 
-                <div>
-                    <label htmlFor="apv" className={styles.label}>APV (Average Placement Value)</label>
-                    <input
-                        type="number"
-                        id="apv"
-                        name="apv"
-                        value={formData.apv}
-                        onChange={handleChange}
-                        placeholder="$ 0.00"
-                        className={styles.input}
-                    />
-                </div>
-            </div>
 
-            <div className={styles.twoInputs}>
-                <div>
-                    <label htmlFor="ltv" className={styles.label}>LTV (Lifetime Value)</label>
-                    <input
-                        type="number"
-                        id="ltv"
-                        name="ltv"
-                        value={formData.ltv}
-                        onChange={handleChange}
-                        placeholder="0"
-                        className={styles.input}
-                    />
-                </div>
 
                 <div>
                     <label htmlFor="closeRate" className={styles.label}>Close Rate (%)</label>
@@ -152,6 +114,36 @@ const Calculator = ({ setResults }) => {
                         className={styles.input}
                     />
                 </div>
+
+                <div>
+                    <label htmlFor="ltv" className={styles.label}>LTV (Lifetime Value)</label>
+                    <input
+                        type="number"
+                        id="ltv"
+                        name="ltv"
+                        value={formData.ltv}
+                        onChange={handleChange}
+                        placeholder="0"
+                        className={styles.input}
+                    />
+                </div>
+            </div>
+
+            <div className={styles.twoInputs}>
+
+                <div>
+                    <label htmlFor="apv" className={styles.label}>APV (Average Placement Value)</label>
+                    <input
+                        type="number"
+                        id="apv"
+                        name="apv"
+                        value={formData.apv}
+                        onChange={handleChange}
+                        placeholder="$ 0.00"
+                        className={styles.input}
+                    />
+                </div>
+
             </div>
 
             <div style={{height:2, backgroundColor:"#d0d0d0", width:"100%", marginBottom:50, marginTop:30, borderRadius:20}}></div>
