@@ -5,7 +5,6 @@ const Calculator = ({ setResults }) => {
     const [formData, setFormData] = useState({
         leads: '',
         callsTaken: '',
-        callsClosed: '',
         apv: '',
         ltv: '',
         closeRate: '0'
@@ -24,20 +23,23 @@ const Calculator = ({ setResults }) => {
     };
 
     const handleCalculate = () => {
-        const { callsClosed, apv, ltv, closeRate } = formData;
+        const { callsTaken, apv, ltv, closeRate } = formData;
 
-        const parsedCallsClosed = parseInt(callsClosed);
-        const parsedCloseRate = parseFloat(closeRate) / 100; // Convert percentage to decimal
-        const parsedapv = parseFloat(apv);
-        const parsedLtv = parseFloat(ltv);
+        const parsedCallsTaken = Number(callsTaken) || 0;
+        const parsedCloseRate = (Number(closeRate) || 0) / 100; // Convert percentage to decimal
+        const parsedApv = Number(apv) || 0;
+        const parsedLtv = Number(ltv) || 0;
+
+        // Calculate the number of closed calls
+        const callsClosed = parsedCallsTaken * parsedCloseRate;
 
         // Calculate Total Revenue
-        const totalRevenue = parsedCallsClosed * parsedapv * parsedLtv;
+        const totalRevenue = callsClosed * parsedApv * parsedLtv;
 
         setResults({
             totalRevenue: totalRevenue.toFixed(2),
-            closedDeals: parsedCallsClosed.toFixed(2),
-            revenuePerCall: (totalRevenue / parsedCallsClosed).toFixed(2)
+            closedDeals: callsClosed.toFixed(2),
+            revenuePerCall: callsClosed > 0 ? (totalRevenue / callsClosed).toFixed(2) : '0.00'
         });
     };
 
@@ -45,7 +47,6 @@ const Calculator = ({ setResults }) => {
         setFormData({
             leads: '',
             callsTaken: '',
-            callsClosed: '',
             apv: '',
             ltv: '',
             closeRate: '0'
@@ -98,8 +99,6 @@ const Calculator = ({ setResults }) => {
             </div>
 
             <div className={styles.twoInputs}>
-
-
 
                 <div>
                     <label htmlFor="closeRate" className={styles.label}>Close Rate (%)</label>
